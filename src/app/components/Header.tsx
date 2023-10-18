@@ -42,7 +42,7 @@ export default function Header() {
           lineHeight={'110%'}>
           Download MP3 {' '}
           <Text as={'span'} color={'orange.400'}>
-          of your favourite vidoes 
+          Of your favourite vidoes 
           </Text>
         </Heading>
         <Text color={'gray.500'} maxW={'3xl'}>
@@ -53,22 +53,13 @@ export default function Header() {
           
         </Text>
         <Box w={'full'} >
-          {/* <Button
-            rounded={'full'}
-            px={6}
-            // colorScheme={'orange'}
-            bg={'orange.500'}
-            _hover={{ bg: 'orange.500' }}
-            >
-            Get started
-          </Button> */}
-          <Button as={Link} href={''} rounded={'full'} colorScheme='orange' px={4} py={2} w={'50%'} bg={'orange.400'}>
+       
+          <Button as={Link} href={''} rounded={'full'} colorScheme='orange' px={4} py={2} w={{base:'90%',md:'50%'}} bg={'orange.400'}>
             Get Started
           </Button>
         </Box>
         <Flex w={'full'} justifyContent={'center'}>
-          {/* <Illustration height={{ sm: '24rem', lg: '28rem' }} mt={{ base: 12, sm: 16 }} /> */}
-
+        
           <Image src='/images/header.svg' height={{ sm: '24rem', lg: '40rem' }} mt={{ base: 10, sm: 6 }}/>
         </Flex>
       </Stack>

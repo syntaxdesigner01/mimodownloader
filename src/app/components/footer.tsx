@@ -4,6 +4,7 @@ import {
   Box,
   chakra,
   Container,
+  Image,
   Stack,
   Text,
   useColorModeValue,
@@ -70,7 +71,9 @@ export default function Footer() {
         spacing={4}
         justify={'center'}
         align={'center'}>
-        <Logo />
+        {/* <Logo /> */}
+
+        <Image src='/icons/icon.svg' />
         <Stack direction={'row'} spacing={6}>
           <Box as="a" href={'#'}>
             Home
@@ -99,7 +102,7 @@ export default function Footer() {
           spacing={4}
           justify={{ base: 'center', md: 'space-between' }}
           align={{ base: 'center', md: 'center' }}>
-          <Text>© 2022 Chakra Templates. All rights reserved</Text>
+          <Text>© 2023 Mimo Downloader. All rights reserved</Text>
           <Stack direction={'row'} spacing={6}>
             <SocialButton label={'Twitter'} href={'#'}>
               <FaTwitter />
