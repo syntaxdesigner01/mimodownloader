@@ -1,8 +1,11 @@
+import HomePage from "./Pages/Home/page"
 
 
 function Home() {
   return (
-    <div>Home page</div>
+    <div>
+      <HomePage/>
+    </div>
   )
 }
 

@@ -3,7 +3,7 @@ import { Roboto } from 'next/font/google'
 import './globals.css'
 import { Providers } from '../../Provider'
 
-const roboto = Roboto({ weight: ['100', '300', '400'] })
+const roboto = Roboto({subsets:['cyrillic'], weight: ['100', '300', '400'] })
 
 export const metadata: Metadata = {
   title: 'mimo downloader',
