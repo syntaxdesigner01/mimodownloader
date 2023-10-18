@@ -5,7 +5,7 @@ import NavBar from "@/app/components/navbar"
 function HomePage() {
   return (
     <div>
-            {/* <NavBar/> */}
+
             <Header/>
             <Footer/>
     </div>
