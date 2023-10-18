@@ -1,5 +1,4 @@
-import HomePage from "./Pages/Home/page"
-
+import HomePage from "@/app/Pages/Home/page"
 
 function Home() {
   return (
