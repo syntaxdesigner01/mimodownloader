@@ -1,8 +1,8 @@
 "use client"
 
+import CardSection from "@/app/components/cardSection"
 import { SearchIcon } from "@chakra-ui/icons"
 import { Input, Box, Flex, Text, Heading, Spinner } from "@chakra-ui/react"
-
 
 
 
@@ -26,7 +26,7 @@ export default function page() {
       </Box>
 
       <Box  mt={10}>
-      <Flex justifyContent={'center'} alignItems={'center'} gap={4}>
+      {/* <Flex justifyContent={'center'} alignItems={'center'} gap={4}>
         <Spinner
           thickness='4px'
           speed='0.65s'
@@ -36,8 +36,15 @@ export default function page() {
           p={4}
         />
         <Text>Please wait..</Text>
-      </Flex>
+      </Flex> */}
+
+        <Box className="mt-[5%]">
+             
+      <CardSection />
+        </Box>
       </Box>
+
+   
 
     </div>
   )
