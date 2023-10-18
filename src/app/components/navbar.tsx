@@ -50,19 +50,21 @@ export default function NavBar() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   return (
     <>
-      <Box bg={useColorModeValue('white', 'gray.900')} shadow={'sm'} px={10}>
+      <Box bg={useColorModeValue('white', 'gray.900')} px={10}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-          <Flex alignItems={'center'} gap={2}>
-            <Image src='/icons/icon.svg' w={50} />
-          <Text fontWeight={'black'}>Mimo Downloader</Text>
-          </Flex>
+          <Link href={'/'}>
+            <Flex alignItems={'center'} gap={2} pt={10} >
+              <Image src='/icons/icon.svg' w={'100px'} />
+              <Text fontWeight={'black'}>Mimo Downloader</Text>
+            </Flex>
+          </Link>
 
 
-          <Flex display={{base:'none',md:'flex'}} justifyContent={'space-between'} fontWeight={'bold'}  gap={10}>
+          {/* <Flex display={{base:'none',md:'flex'}} justifyContent={'space-between'} fontWeight={'bold'}  gap={10}>
             <Link href={''} ><Text fontSize={'xl'}> Home</Text> </Link>
             <Link href={''} ><Text fontSize={'xl'}>YouTube To Mp3</Text> </Link>
             <Link href={''} ><Text fontSize={'xl'}>Tiktok</Text> </Link>
-          </Flex>
+          </Flex> */}
 
           <Flex alignItems={'center'}>
             <Box>
