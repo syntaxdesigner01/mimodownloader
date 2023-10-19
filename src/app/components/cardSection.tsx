@@ -32,8 +32,8 @@ export default function CardSection() {
                 </CardBody>
 
 
-                <CardFooter>
-                    <button className='flex items-center justify-center w-[40%] text-white py-2 rounded-md bg-black '>
+                <CardFooter as={Flex} justifyContent={'center'}>
+                    <button className='flex items-center justify-center w-full md:w-[40%] text-white py-2 rounded-md bg-black '>
                         <DownloadIcon />
                         <Text>Download</Text>
                     </button>
