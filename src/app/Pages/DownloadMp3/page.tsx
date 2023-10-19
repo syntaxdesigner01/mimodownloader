@@ -9,15 +9,10 @@ import {SiTiktok,SiYoutube} from 'react-icons/si'
 
 
 
-export default function page() {
+export default function DownloadMp3() {
 
     const [download,setDownload] = useState<String>('Youtube')
-    const [Icons , setIcons] = useState<string>()
-
-    function Choose(e:string ){
-      setDownload(e)
     
-    }
 
   return (
     <div className="flex flex-col mt-[5%] w-full items-center justify-center">
@@ -40,7 +35,7 @@ export default function page() {
 
 
         <Flex justifyContent={'center'} mt={5}>
-          <select className="text-white px-10 py-2 rounded-md bg-black" onChange={e =>Choose(e.target.value)} >
+          <select className="text-white px-10 py-2 rounded-md bg-black" onChange={e =>setDownload(e.target.value)} >
             <option value='Youtube' className="">Youtube To Mp3</option>
             <option value='TikTok'>TikTok</option>
           </select>
