@@ -53,8 +53,8 @@ export default function NavBar() {
       <Box bg={useColorModeValue('white', 'gray.900')} px={10}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <Link href={'/'}>
-            <Flex alignItems={'center'} gap={2} pt={10} >
-              <Image src='/icons/icon.svg' w={'100px'} />
+            <Flex alignItems={'center'} gap={2} pt={{base:0,md:10}} >
+              <Image src='/icons/icon.svg' w={{base:'50px',md:'100px'}} />
               <Text fontWeight={'black'}>Mimo Downloader</Text>
             </Flex>
           </Link>
