@@ -38,17 +38,17 @@ export default function Header() {
         py={{ base: 20, md: 28 }}>
         <Heading
           fontWeight={800}
-          fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }}
+          fontSize={{ base: '3xl', sm: '2xl', md: '5xl' }}
           lineHeight={'110%'}>
-          Download MP3 {' '}
+            Your Ultimate {' '}
           <Text as={'span'} color={'orange.400'}>
-          Of your favourite vidoes 
+          YouTube and TikTok MP3 Downloader
           </Text>
+
+        
         </Heading>
         <Text color={'gray.500'} maxW={'3xl'}>
-          Never miss a meeting. Never be late for one too. Keep track of your meetings and
-          receive smart reminders in appropriate times. Read your smart “Daily Agenda”
-          every morning.
+        Enhance Your Music Experience - Effortlessly Convert YouTube and TikTok Videos to MP3s. Your Melodies, Your Rules, Always Available!
 
           
         </Text>
