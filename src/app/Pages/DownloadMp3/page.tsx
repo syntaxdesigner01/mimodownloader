@@ -26,7 +26,8 @@ export default function DownloadMp3() {
   const [loader, setLoader] = useState(false)
 
 
-  const getVideo = async () => {
+
+  const ytMp3 = async () => {
     if (url.trim().length === 0) {
       ErrorToast('Url link is empty')
     }
@@ -34,11 +35,16 @@ export default function DownloadMp3() {
       ErrorToast('Invaild url!')
     }
     else {
-
-      setLoader(true)
-      const data = await getYtmp3(url);
-      setData(data)
-      setLoader(false)
+      if (navigator.onLine) {
+        
+        setUrl('')
+        setLoader(true)
+        const data = await getYtmp3(url);
+        setData(data)
+        setLoader(false)
+      } else {
+        ErrorToast('You seem to be offline check your network and try again')
+      }
     }
   }
 
@@ -53,10 +59,10 @@ export default function DownloadMp3() {
           </Flex>
         </Heading>
 
-      
+
         <Flex w={'full'} alignItems={'center'} justifyContent={'center'} gap={{ base: 4, md: 1 }} flexDirection={{ base: 'column', md: 'row' }}>
           <Input type="search" px={'10px'} w={{ base: '90%', md: '40%' }} border={'2px'} placeholder="Paste link here.." onChange={e => setUrl(e.target.value)} />
-          <button className=" w-[70%] md:w-[10%] font-bold py-2 bg-orange-600 px-4 mx-2 rounded-md hover:text-white" onClick={getVideo} disabled={!url.length}>
+          <button className=" w-[70%] md:w-[10%] font-bold py-2 bg-orange-600 px-4 mx-2 rounded-md hover:text-white" onClick={ytMp3} >
             <Flex alignItems={'center'} justifyContent={'center'} gap={1}>
               <SearchIcon fontSize={20} /> <Text>Search</Text>
             </Flex>
