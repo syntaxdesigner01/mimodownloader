@@ -7,7 +7,8 @@ import { Input, Box, Flex, Text, Heading, Spinner, Stack, Select } from "@chakra
 import { useEffect, useState } from "react"
 import { SiTiktok, SiYoutube } from 'react-icons/si'
 import toast, { Toaster } from 'react-hot-toast';
-import { ErrorToast } from "@/utils/CustomToast"
+import { ErrorToast, SuccessToast } from "@/utils/CustomToast"
+import getTiktokMp3 from "@/app/fetchData/getTiktokMp3"
 
 
 
@@ -27,20 +28,32 @@ export default function DownloadMp3() {
 
 
 
+  // !url.includes('https://www.youtube.com/') || 
+
   const ytMp3 = async () => {
     if (url.trim().length === 0) {
       ErrorToast('Url link is empty')
     }
-    else if (!url.includes('https://www.youtube.com/')) {
+    else if (!url.startsWith('https://www')) {
       ErrorToast('Invaild url!')
     }
     else {
       if (navigator.onLine) {
-        
-        setUrl('')
+
         setLoader(true)
-        const data = await getYtmp3(url);
-        setData(data)
+       
+        if(download === 'Youtube'){
+          const data = await getYtmp3(url);
+          console.log(data);
+          
+          setData(data)
+        }else{
+          SuccessToast('Hey bear with us we are currently working on this feature')
+          const data = await getTiktokMp3(url)
+          console.log(data.data);
+          
+        }
+
         setLoader(false)
       } else {
         ErrorToast('You seem to be offline check your network and try again')
@@ -61,7 +74,7 @@ export default function DownloadMp3() {
 
 
         <Flex w={'full'} alignItems={'center'} justifyContent={'center'} gap={{ base: 4, md: 1 }} flexDirection={{ base: 'column', md: 'row' }}>
-          <Input type="search" px={'10px'} w={{ base: '90%', md: '40%' }} border={'2px'} placeholder="Paste link here.." onChange={e => setUrl(e.target.value)} />
+          <Input type="text" px={'10px'} w={{ base: '90%', md: '40%' }} border={'2px'} placeholder="Paste link here.." onChange={e => setUrl(e.target.value)} />
           <button className=" w-[70%] md:w-[10%] font-bold py-2 bg-orange-600 px-4 mx-2 rounded-md hover:text-white" onClick={ytMp3} >
             <Flex alignItems={'center'} justifyContent={'center'} gap={1}>
               <SearchIcon fontSize={20} /> <Text>Search</Text>

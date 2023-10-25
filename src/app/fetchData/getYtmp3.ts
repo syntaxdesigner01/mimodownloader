@@ -1,4 +1,5 @@
 
+
 export type Data= {
     link: string;
     title: string;
@@ -32,6 +33,7 @@ export default async function getYtmp3(vidoeUrl:string):Promise<Data>{
 
     } catch (error:any) {
         console.error(error);
+        // ErrorToast(error.msg)
         return error
     }
 }

@@ -1,15 +1,33 @@
 
-export type Data= {
-    link: string;
-    title: string;
-    filesize: number;
-    progress: number;
-    duration: number;
-    status: string;
-    msg: string;
-}
 
-export default async function getTikTok(vidoeUrl:string):Promise<Data>{
+
+type Data = {
+    code: number;
+    msg: string;
+    data: {
+      aweme_id: string;
+      region: string;
+      title: string;
+      cover: string;
+      origin_cover: string;
+      play: string;
+      wmplay: string;
+      music: string;
+      play_count: number;
+      digg_count: number;
+      comment_count: number;
+      create_time: number;
+      author: {
+        unique_id: string;
+        nickname: string;
+        avatar: string;
+      };
+    };
+  };
+
+
+
+export default async function getTiktokMp3(vidoeUrl:string):Promise<Data>{
 
 
     const url = `https://tiktok-video-no-watermark2.p.rapidapi.com/?url=${vidoeUrl}`;
@@ -23,7 +41,7 @@ export default async function getTikTok(vidoeUrl:string):Promise<Data>{
 
     try {
         const response = await fetch(url, options);
-        const result = await response.json() ;
+        const result = await response.json() as Data;
         return result
 
     } catch (error:any) {
