@@ -39,7 +39,6 @@ export default function DownloadMp3() {
     }
     else {
       if (navigator.onLine) {
-
         setLoader(true)
        
         if(download === 'Youtube'){
