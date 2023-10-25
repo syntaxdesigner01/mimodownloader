@@ -2,8 +2,8 @@
 export type Data= {
     link: string;
     title: string;
-    filesize?: number;
-    progress?: number;
+    filesize: number;
+    progress: number;
     duration: number;
     status: string;
     msg: string;
@@ -40,3 +40,17 @@ export default async function getYtmp3(vidoeUrl:string):Promise<Data>{
     }
 }
 // Call the function to start the process
+
+
+
+fetch('https://api.example.com/data')
+  .then(response => {
+    if (response.ok) {
+      
+
+        
+    } else {
+      throw new Error('Request failed');
+    }
+  })
+  
