@@ -29,9 +29,10 @@ export default function CardSection({ result }: CardSectionProps) {
     const sec: any = `${getsec1}${getsec2}`
 
     // file size 
-    const filesize:any = result === undefined ? '' : (result?.filesize /1048576).toFixed(2)
+    // const filesize:any = result === undefined ? '' : (result?.filesize /1048576).toFixed(2)
 
-
+    console.log(result);
+    
 
     return (
 
@@ -63,7 +64,8 @@ export default function CardSection({ result }: CardSectionProps) {
                                     Title: {result?.title}
                                 </Text>
                                 <Text fontWeight={'extrabold'} py='2'>Length: {min}:{sec} mins</Text>
-                                <Text fontWeight={'extrabold'}>file size: {filesize}mb</Text>
+                                <Text fontWeight={'extrabold'} >Media Type: Mp3 </Text>
+                                {/* <Text fontWeight={'extrabold'}>file size: {filesize}mb</Text> */}
                             </CardBody>
 
 
