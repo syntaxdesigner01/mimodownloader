@@ -73,7 +73,7 @@ export default function DownloadMp3() {
 
 
         <Flex w={'full'} alignItems={'center'} justifyContent={'center'} gap={{ base: 4, md: 1 }} flexDirection={{ base: 'column', md: 'row' }}>
-          <Input type="text" px={'10px'} w={{ base: '90%', md: '40%' }} border={'2px'} placeholder="Paste link here.." onChange={e => setUrl(e.target.value)} />
+          <Input type="search" px={'10px'} w={{ base: '90%', md: '40%' }} border={'2px'} placeholder="Paste link here.." onChange={e => setUrl(e.target.value)} />
           <button className=" w-[70%] md:w-[10%] font-bold py-2 bg-orange-600 px-4 mx-2 rounded-md hover:text-white" onClick={ytMp3} >
             <Flex alignItems={'center'} justifyContent={'center'} gap={1}>
               <SearchIcon fontSize={20} /> <Text>Search</Text>
@@ -121,6 +121,7 @@ export default function DownloadMp3() {
       <Toaster
         position="top-center"
         reverseOrder={true}
+     
       />
 
     </div>
