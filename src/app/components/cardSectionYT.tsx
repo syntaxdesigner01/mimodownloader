@@ -10,7 +10,7 @@ type CardSectionProps = {
 
 
 
-export default function CardSection({ result }: CardSectionProps) {
+export default function CardSectionYT({ result }: CardSectionProps) {
   
 
     /**
