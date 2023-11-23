@@ -11,7 +11,7 @@ export type Data = {
     msg: string;
 }
 
-export default async function getYtmp3(vidoeUrl: string): Promise<Data> {
+export default async function getYtmp3(vidoeUrl: string): Promise<any> {
 
     const regex = /(?:youtu\.be\/|youtube(?:-nocookie)?\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/;
     const match = vidoeUrl.match(regex);
