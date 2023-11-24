@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 type Data = {
     link?: string,
@@ -11,33 +12,87 @@ type Data = {
     thumbnail?: string,
 }
 
-const fetchData = createAsyncThunk(
-    'api/fetchData', (arg, {rejectWithValue }) => {
-        try {
-            const regex = /(?:youtu\.be\/|youtube(?:-nocookie)?\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/;
-            // const {data} = 
 
-        } catch (error) {
-                // rejectWithValue(error.response.data)
+interface UsersState {
+    data: []
+    isError: boolean,
+    isSuccess: boolean,
+    isLoading: boolean,
+    message: string,
+}
+
+
+const initialState = {
+    data: [] as Data,
+    isError: false,
+    isSuccess: false,
+    isLoading: false,
+    message: "",
+
+} as UsersState
+
+
+
+export const fetchData = createAsyncThunk(
+    'api/fetchData', async (arg: string, { rejectWithValue }) => {
+
+        const regex = /(?:youtu\.be\/|youtube(?:-nocookie)?\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/;
+        const match = arg.match(regex);
+        const videoId = match ? match[1] : null;
+        
+        const options = {
+            method: 'GET',
+            url: 'https://youtube-mp36.p.rapidapi.com/dl',
+            params: {id: `${arg}`},
+            headers: {
+              'X-RapidAPI-Key': '4946a6b3dbmsh470bc27f05c6116p1fa079jsne42699169e20',
+              'X-RapidAPI-Host': 'youtube-mp36.p.rapidapi.com'
+            }
+          };
+
+        try {
+           
+            if (!videoId) throw new Error('Invalid URL');
+            else {
+                const { data } = await axios.get(`https://youtube-mp36.p.rapidapi.com/dl?id=${videoId}`)
+                console.log(data);
+                return data
+            }
+
+
+        } catch (error: any) {
+            console.log(error);
+            
+            rejectWithValue(error.response.data)
         }
     }
 )
 
-const initialState: Data = {
-    title: "",
-    link: "",
-    thumbnail: "",
-    filesize: 0,
-    duration: 0,
-    status: '',
-    msg: ''
-}
 
 const dataSlice = createSlice({
     name: 'data',
     initialState,
     reducers: {},
-    extraReducers: {}
+    extraReducers: (builder) => {
+        builder
+            .addCase(fetchData.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isError = false
+                state.isSuccess = true
+                state.data = action?.payload
+            })
+            .addCase(fetchData.pending, (state) => {
+                state.isLoading = true
+                state.isError = false
+                state.isSuccess = false
+            })
+            .addCase(fetchData.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = true
+                state.isSuccess = false
+                state.message = action.payload as string
+            })
+    }
 
 })
 

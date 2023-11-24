@@ -18,6 +18,10 @@ import { SiTiktok, SiYoutube } from "react-icons/si";
 import toast, { Toaster } from "react-hot-toast";
 import { ErrorToast, SuccessToast } from "@/utils/CustomToast";
 import getTiktokMp3 from "@/app/fetchData/getTiktokMp3";
+import { fetchData } from "@/app/redux/dataSlice";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/app/redux/store";
+
 
 export default function DownloadMp3() {
 
@@ -27,9 +31,14 @@ export default function DownloadMp3() {
   const [data, setData] = useState<Data>();
   const [url, setUrl] = useState("");
   const [loader, setLoader] = useState(false);
+  const dispatch = useDispatch<AppDispatch>()
 
 
 
+
+  const searchData = ()=>{
+    dispatch(fetchData(url))
+  }
 
   // const ytMp3 = async () => {
   //   if (url.trim().length === 0) {
@@ -91,7 +100,7 @@ export default function DownloadMp3() {
           />
           <button
             className=" w-[70%] md:w-[10%] font-bold py-2 bg-orange-600 px-4 mx-2 rounded-md hover:text-white"
-            onClick={()=>{}}
+            onClick={searchData}
           >
             <Flex alignItems={"center"} justifyContent={"center"} gap={1}>
               <SearchIcon fontSize={20} /> <Text>Search</Text>
