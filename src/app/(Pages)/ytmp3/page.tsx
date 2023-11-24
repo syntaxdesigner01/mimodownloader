@@ -13,11 +13,9 @@ import {
   Stack,
   Select,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import { SiTiktok, SiYoutube } from "react-icons/si";
+import { useState } from "react";
+import { SiYoutube } from "react-icons/si";
 import toast, { Toaster } from "react-hot-toast";
-import { ErrorToast, SuccessToast } from "@/utils/CustomToast";
-import getTiktokMp3 from "@/app/fetchData/getTiktokMp3";
 import { fetchData } from "@/app/redux/dataSlice";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/app/redux/store";
@@ -26,7 +24,6 @@ import { AppDispatch } from "@/app/redux/store";
 export default function DownloadMp3() {
 
 
-  // const [download, setDownload] = useState<String>("Youtube");
   const [decription, setDecription] = useState<String>("");
   const [data, setData] = useState<Data>();
   const [url, setUrl] = useState("");
@@ -39,34 +36,6 @@ export default function DownloadMp3() {
   const searchData = ()=>{
     dispatch(fetchData(url))
   }
-
-  // const ytMp3 = async () => {
-  //   if (url.trim().length === 0) {
-  //     ErrorToast("Url link is empty");
-  //   } else {
-  //     if (navigator.onLine) {
-  //       setLoader(true);
-
-  //       if (download === "Youtube") {
-  //         const data = await getYtmp3(url);
-  //         console.log(data);
-
-  //         setData(data);
-  //       } else {
-  //         SuccessToast(
-  //           "Hey bear with us we are currently working on this feature"
-  //         );
-  //         const data = await getTiktokMp3(url);
-  //         console.log(data?.data);
-  //       }
-
-  //       setLoader(false);
-  //     } else {
-  //       ErrorToast("You seem to be offline check your network and try again");
-  //     }
-  //   }
-  // };
-
 
 
   return (
@@ -109,7 +78,7 @@ export default function DownloadMp3() {
         </Flex>
       </Box>
 
-      <Box mt={10}>
+      {/* <Box mt={10}>
         {loader ? (
           <Flex justifyContent={"center"} alignItems={"center"} gap={4}>
             <Spinner
@@ -129,7 +98,7 @@ export default function DownloadMp3() {
          
           </Box>
         )}
-      </Box>
+      </Box> */}
 
       <Toaster position="top-center" reverseOrder={true} />
     </div>

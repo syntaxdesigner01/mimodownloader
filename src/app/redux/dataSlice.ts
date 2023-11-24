@@ -1,3 +1,4 @@
+import { ErrorToast } from "@/utils/CustomToast";
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -43,7 +44,7 @@ export const fetchData = createAsyncThunk(
         const options = {
             method: 'GET',
             url: 'https://youtube-mp36.p.rapidapi.com/dl',
-            params: {id: `${arg}`},
+            params: {id: `${videoId}`},
             headers: {
               'X-RapidAPI-Key': '4946a6b3dbmsh470bc27f05c6116p1fa079jsne42699169e20',
               'X-RapidAPI-Host': 'youtube-mp36.p.rapidapi.com'
@@ -52,16 +53,16 @@ export const fetchData = createAsyncThunk(
 
         try {
            
-            if (!videoId) throw new Error('Invalid URL');
+            if (!videoId) ErrorToast('Invalid URL')
             else {
-                const { data } = await axios.get(`https://youtube-mp36.p.rapidapi.com/dl?id=${videoId}`)
+                const { data } = await axios.request(options)
                 console.log(data);
                 return data
             }
 
 
         } catch (error: any) {
-            console.log(error);
+            console.log(error.response.data);
             
             rejectWithValue(error.response.data)
         }
@@ -91,6 +92,8 @@ const dataSlice = createSlice({
                 state.isError = true
                 state.isSuccess = false
                 state.message = action.payload as string
+                // console.log(state.message);
+                
             })
     }
 
