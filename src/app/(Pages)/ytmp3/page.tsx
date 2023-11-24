@@ -1,7 +1,6 @@
 "use client";
 
 import CardSectionYT from "@/app/components/cardSectionYT";
-import getYtmp3, { Data } from "@/app/fetchData/getYtmp3";
 import { SearchIcon } from "@chakra-ui/icons";
 import {
   Input,
@@ -25,7 +24,6 @@ export default function DownloadMp3() {
 
 
   const [decription, setDecription] = useState<String>("");
-  const [data, setData] = useState<Data>();
   const [url, setUrl] = useState("");
   const [loader, setLoader] = useState(false);
   const dispatch = useDispatch<AppDispatch>()
