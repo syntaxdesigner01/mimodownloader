@@ -10,9 +10,9 @@ import {
   Heading,
   Spinner,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { SiYoutube } from "react-icons/si";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 import { fetchData } from "@/app/redux/dataSlice";
 import { useDispatch,useSelector} from "react-redux";
 import { AppDispatch } from "@/app/redux/store";
@@ -35,7 +35,7 @@ const searchData = ()=>{
   return (
     <div className="flex flex-col mt-[5%] w-full items-center justify-center">
       <Box w={"full"}>
-        
+
         {/* logo  */}
         <Heading textAlign={"center"} mt={10} mb={2}>
           <Flex alignItems={"center"} gap={2} justifyContent={"center"}>
