@@ -9,8 +9,6 @@ import {
   Text,
   Heading,
   Spinner,
-  Stack,
-  Select,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { SiYoutube } from "react-icons/si";
@@ -23,17 +21,11 @@ import { AppDispatch } from "@/app/redux/store";
 
 export default function DownloadMp3() {
 
-
-  const [decription, setDecription] = useState<String>("");
   const [url, setUrl] = useState("");
-  const [loader, setLoader] = useState(false);
   const dispatch = useDispatch<AppDispatch>()
 
 const loading = useSelector( (state:any) => state.isLoading)
-
-console.log(loading);
-
-
+const success = useSelector( (state:any) => state.isSuccess)
 
 const searchData = ()=>{
   dispatch(fetchData(url))    
@@ -43,6 +35,8 @@ const searchData = ()=>{
   return (
     <div className="flex flex-col mt-[5%] w-full items-center justify-center">
       <Box w={"full"}>
+        
+        {/* logo  */}
         <Heading textAlign={"center"} mt={10} mb={2}>
           <Flex alignItems={"center"} gap={2} justifyContent={"center"}>
             <Text>Youtube</Text>
@@ -50,6 +44,7 @@ const searchData = ()=>{
           </Flex>
         </Heading>
 
+        {/* decription text */}
         <Text textAlign={'center'} fontWeight={500} whiteSpace={"nowrap"} >Paste video url here 👇👇</Text>
 
 
@@ -61,6 +56,7 @@ const searchData = ()=>{
           gap={{ base: 4, md: 1 }}
           flexDirection={{ base: "column", md: "row" }}
         >
+          {/* search box */}
           <Input
             type="search"
             px={"10px"}
@@ -78,6 +74,7 @@ const searchData = ()=>{
             </Flex>
           </button>
         </Flex>
+        {/* search box end */}
       </Box>
 
       <Box mt={10}>
@@ -93,12 +90,12 @@ const searchData = ()=>{
             />
             <Text>Please wait..</Text>
           </Flex>
-        ) : (
-          <Box className="mt-[2%]">
-            <MediaCard/>
-          </Box>
-        )}
+        ) : ""}
       </Box>
+
+      {success && <Box className="mt-[2%]">
+            <MediaCard/>
+          </Box>}
 
       <Toaster position="top-center" reverseOrder={true} />
     </div>

@@ -95,7 +95,6 @@ const dataSlice = createSlice({
                 state.isError = true
                 state.isSuccess = false
                 state.message = action.payload as string
-                // console.log(state.message);
                 
             })
 
