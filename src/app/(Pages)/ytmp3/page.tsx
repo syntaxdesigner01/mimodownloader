@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "@/app/redux/store";
 import { ErrorToast } from "@/utils/CustomToast";
 
+
 export default function DownloadMp3() {
   const [url, setUrl] = useState("");
   const dispatch = useDispatch<AppDispatch>();
@@ -40,10 +41,6 @@ export default function DownloadMp3() {
         </Heading>
 
         {/* decription text */}
-        <Text textAlign={"center"} fontWeight={500} whiteSpace={"nowrap"}>
-          Paste video url here 👇👇
-        </Text>
-
           {/* error message */}
         {data?.status === 'fail' ? <p className="text-red-500 text-center">Long audio of more than 2 hr duration are not allowed</p> :""}
 
