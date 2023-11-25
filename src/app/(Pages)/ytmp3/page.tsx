@@ -1,6 +1,6 @@
 "use client";
 
-import CardSectionYT from "@/app/components/cardSectionYT";
+import MediaCard from "@/app/components/MediaCard";
 import { SearchIcon } from "@chakra-ui/icons";
 import {
   Input,
@@ -12,12 +12,13 @@ import {
   Stack,
   Select,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SiYoutube } from "react-icons/si";
 import toast, { Toaster } from "react-hot-toast";
 import { fetchData } from "@/app/redux/dataSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector} from "react-redux";
 import { AppDispatch } from "@/app/redux/store";
+
 
 
 export default function DownloadMp3() {
@@ -28,11 +29,14 @@ export default function DownloadMp3() {
   const [loader, setLoader] = useState(false);
   const dispatch = useDispatch<AppDispatch>()
 
+const loading = useSelector( (state:any) => state.isLoading)
+
+console.log(loading);
 
 
 
-  const searchData = ()=>{
-    dispatch(fetchData(url))
+const searchData = ()=>{
+  dispatch(fetchData(url))    
   }
 
 
@@ -76,8 +80,8 @@ export default function DownloadMp3() {
         </Flex>
       </Box>
 
-      {/* <Box mt={10}>
-        {loader ? (
+      <Box mt={10}>
+        {loading ? (
           <Flex justifyContent={"center"} alignItems={"center"} gap={4}>
             <Spinner
               thickness="4px"
@@ -91,12 +95,10 @@ export default function DownloadMp3() {
           </Flex>
         ) : (
           <Box className="mt-[2%]">
-         
-            <CardSectionYT result={data} />
-         
+            <MediaCard/>
           </Box>
         )}
-      </Box> */}
+      </Box>
 
       <Toaster position="top-center" reverseOrder={true} />
     </div>

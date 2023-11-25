@@ -20,6 +20,7 @@ interface UsersState {
     isSuccess: boolean,
     isLoading: boolean,
     message: string,
+
 }
 
 
@@ -29,6 +30,7 @@ const initialState = {
     isSuccess: false,
     isLoading: false,
     message: "",
+
 
 } as UsersState
 
@@ -56,6 +58,7 @@ export const fetchData = createAsyncThunk(
             if (!videoId) ErrorToast('Invalid URL')
             else {
                 const { data } = await axios.request(options)
+                data.thumbnail = `https://img.youtube.com/vi/${videoId}/sddefault.jpg`
                 console.log(data);
                 return data
             }
@@ -95,6 +98,7 @@ const dataSlice = createSlice({
                 // console.log(state.message);
                 
             })
+
     }
 
 })
