@@ -1,6 +1,6 @@
 "use client";
 
-import CardSectionYT from "@/app/components/cardSectionYT";
+import MediaCard from "@/app/components/MediaCard";
 import { SearchIcon } from "@chakra-ui/icons";
 import {
   Input,
@@ -9,36 +9,34 @@ import {
   Text,
   Heading,
   Spinner,
-  Stack,
-  Select,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { SiYoutube } from "react-icons/si";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 import { fetchData } from "@/app/redux/dataSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector} from "react-redux";
 import { AppDispatch } from "@/app/redux/store";
+
 
 
 export default function DownloadMp3() {
 
-
-  const [decription, setDecription] = useState<String>("");
   const [url, setUrl] = useState("");
-  const [loader, setLoader] = useState(false);
   const dispatch = useDispatch<AppDispatch>()
 
+const loading = useSelector( (state:any) => state.isLoading)
+const success = useSelector( (state:any) => state.isSuccess)
 
-
-
-  const searchData = ()=>{
-    dispatch(fetchData(url))
+const searchData = ()=>{
+  dispatch(fetchData(url))    
   }
 
 
   return (
     <div className="flex flex-col mt-[5%] w-full items-center justify-center">
       <Box w={"full"}>
+
+        {/* logo  */}
         <Heading textAlign={"center"} mt={10} mb={2}>
           <Flex alignItems={"center"} gap={2} justifyContent={"center"}>
             <Text>Youtube</Text>
@@ -46,6 +44,7 @@ export default function DownloadMp3() {
           </Flex>
         </Heading>
 
+        {/* decription text */}
         <Text textAlign={'center'} fontWeight={500} whiteSpace={"nowrap"} >Paste video url here 👇👇</Text>
 
 
@@ -57,6 +56,7 @@ export default function DownloadMp3() {
           gap={{ base: 4, md: 1 }}
           flexDirection={{ base: "column", md: "row" }}
         >
+          {/* search box */}
           <Input
             type="search"
             px={"10px"}
@@ -74,10 +74,11 @@ export default function DownloadMp3() {
             </Flex>
           </button>
         </Flex>
+        {/* search box end */}
       </Box>
 
-      {/* <Box mt={10}>
-        {loader ? (
+      <Box mt={10}>
+        {loading ? (
           <Flex justifyContent={"center"} alignItems={"center"} gap={4}>
             <Spinner
               thickness="4px"
@@ -89,14 +90,12 @@ export default function DownloadMp3() {
             />
             <Text>Please wait..</Text>
           </Flex>
-        ) : (
-          <Box className="mt-[2%]">
-         
-            <CardSectionYT result={data} />
-         
-          </Box>
-        )}
-      </Box> */}
+        ) : ""}
+      </Box>
+
+      {success && <Box className="mt-[2%]">
+            <MediaCard/>
+          </Box>}
 
       <Toaster position="top-center" reverseOrder={true} />
     </div>
