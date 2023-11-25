@@ -2,40 +2,35 @@
 
 import MediaCard from "@/app/components/MediaCard";
 import { SearchIcon } from "@chakra-ui/icons";
-import {
-  Input,
-  Box,
-  Flex,
-  Text,
-  Heading,
-  Spinner,
-} from "@chakra-ui/react";
+import { Input, Box, Flex, Text, Heading, Spinner } from "@chakra-ui/react";
 import { useState } from "react";
 import { SiYoutube } from "react-icons/si";
 import { Toaster } from "react-hot-toast";
 import { fetchData } from "@/app/redux/dataSlice";
-import { useDispatch,useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "@/app/redux/store";
-
-
+import { ErrorToast } from "@/utils/CustomToast";
 
 export default function DownloadMp3() {
-
   const [url, setUrl] = useState("");
-  const dispatch = useDispatch<AppDispatch>()
+  const dispatch = useDispatch<AppDispatch>();
 
-const loading = useSelector( (state:any) => state.isLoading)
-const success = useSelector( (state:any) => state.isSuccess)
+  const loading = useSelector((state: any) => state.isLoading);
+  const message = useSelector((state: any) => state.message);
+  const status = useSelector((state: any) => state.status);
+  const data = useSelector((state: any) => state.data);
+  const success = useSelector((state: any) => state.isSuccess);
 
-const searchData = ()=>{
-  dispatch(fetchData(url))    
-  }
+  console.log(status);
 
+  const searchData = () => {
+    if (url.trim().length !== 0) dispatch(fetchData(url));
+  };
 
   return (
     <div className="flex flex-col mt-[5%] w-full items-center justify-center">
-      <Box w={"full"}>
 
+      <Box w={"full"}>
         {/* logo  */}
         <Heading textAlign={"center"} mt={10} mb={2}>
           <Flex alignItems={"center"} gap={2} justifyContent={"center"}>
@@ -45,7 +40,12 @@ const searchData = ()=>{
         </Heading>
 
         {/* decription text */}
-        <Text textAlign={'center'} fontWeight={500} whiteSpace={"nowrap"} >Paste video url here 👇👇</Text>
+        <Text textAlign={"center"} fontWeight={500} whiteSpace={"nowrap"}>
+          Paste video url here 👇👇
+        </Text>
+
+          {/* error message */}
+        {data?.status === 'fail' ? <p className="text-red-500 text-center">Long audio of more than 2 hr duration are not allowed</p> :""}
 
 
         <Flex
@@ -90,12 +90,14 @@ const searchData = ()=>{
             />
             <Text>Please wait..</Text>
           </Flex>
-        ) : ""}
+        ) : 
+          "" 
+        }
       </Box>
 
-      {success && <Box className="mt-[2%]">
-            <MediaCard/>
-          </Box>}
+      {status === 'fulifiled' && <Box className="mt-[2%]">
+              <MediaCard />
+            </Box>}
 
       <Toaster position="top-center" reverseOrder={true} />
     </div>

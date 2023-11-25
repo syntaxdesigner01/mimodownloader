@@ -1,3 +1,4 @@
+import { ErrorToast } from "@/utils/CustomToast";
 import Image from "next/image";
 import { useSelector } from "react-redux";
 
@@ -21,7 +22,7 @@ export default function MediaCard() {
         <img src={data?.thumbnail} alt="" width={300} height={300} className="rounded-lg" />
       </div>
 
-      <div className="px-4 pt-2 lg:pt-4 shadow-lg py-10 lg:mt-4">
+      <div className="px-4 pt-2 lg:pt-4 shadow-lg py-10 ">
       <div>
         <p className="font-bold text-center lg:text-lg">{data?.title}</p>
       </div>
@@ -29,22 +30,29 @@ export default function MediaCard() {
       <div>
        <div className="">
        <p>
-          <span className="font-bold">Duration</span> - {min}:{sec} mins
+         Duration - {min}:{sec} mins
         </p>
-        <p><span className="font-bold">File size</span> - {filesize} mb</p>
-        <p><span className="font-bold">File Type</span> Mp3</p>
+        <p>File size - {filesize} mb</p>
+        <p>File Type Mp3</p>
         
        </div>
 
         <div className=" pt-4 lg:flex justify-end">
-        <button className="bg-black text-white w-full py-3 rounded-xl font-bold lg:w-1/2">
-          <a href={data?.link} download={`mimoapp-${data?.title}`}>
-            Download Mp3
-          </a>
-        </button>
+       {
+        data?.link.length > 0 ? ( <button className="bg-black text-white w-full py-3 rounded-xl font-bold lg:w-1/2" >
+        <a href={data.link} download={data?.title}>
+          Download Mp3
+        </a>
+      </button>):
+
+      <p className="text-red-500">Sorry we could not get this audio please try another vidoe</p>
+
+       }
         </div>
       </div>
+      
       </div>
+     
     </div>
   );
 }

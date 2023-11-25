@@ -20,6 +20,7 @@ interface UsersState {
     isSuccess: boolean,
     isLoading: boolean,
     message: string,
+    status: 'idle' | 'fulifiled' | 'pending' | 'rejected'
 
 }
 
@@ -30,6 +31,7 @@ const initialState = {
     isSuccess: false,
     isLoading: false,
     message: "",
+    status:'idle'
 
 
 } as UsersState
@@ -65,9 +67,9 @@ export const fetchData = createAsyncThunk(
 
 
         } catch (error: any) {
-            console.log(error.response.data);
-            
-            rejectWithValue(error.response.data)
+            console.log(error);
+       
+           return rejectWithValue(error.message)
         }
     }
 )
@@ -83,18 +85,21 @@ const dataSlice = createSlice({
                 state.isLoading = false
                 state.isError = false
                 state.isSuccess = true
+                state.status = 'fulifiled'
                 state.data = action?.payload
             })
             .addCase(fetchData.pending, (state) => {
                 state.isLoading = true
                 state.isError = false
                 state.isSuccess = false
+                state.status = 'pending'
             })
             .addCase(fetchData.rejected, (state, action) => {
                 state.isLoading = false
                 state.isError = true
                 state.isSuccess = false
                 state.message = action.payload as string
+                state.status = 'rejected'
                 
             })
 
