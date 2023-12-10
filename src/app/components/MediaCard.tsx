@@ -45,6 +45,7 @@ export default function MediaCard() {
           </div>
         </div>
       </div>
+     
     </div>
   );
 }

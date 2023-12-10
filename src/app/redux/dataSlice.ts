@@ -118,7 +118,6 @@ const dataSlice = createSlice({
                 state.isSuccess = false
                 state.message = action.payload as string
                 state.status = 'rejected'
-
             })
 
     }
