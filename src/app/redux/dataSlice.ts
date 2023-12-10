@@ -31,7 +31,7 @@ const initialState = {
     isSuccess: false,
     isLoading: false,
     message: "",
-    status:'idle'
+    status: 'idle'
 
 
 
@@ -45,19 +45,36 @@ export const fetchData = createAsyncThunk(
         const regex = /(?:youtu\.be\/|youtube(?:-nocookie)?\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/;
         const match = arg.match(regex);
         const videoId = match ? match[1] : null;
+
+        // const options = {
+        //     method: 'GET',
+        //     url: 'https://youtube-mp36.p.rapidapi.com/dl',
+        //     params: {id: `${videoId}`},
+        //     headers: {
+        //       'X-RapidAPI-Key': '4946a6b3dbmsh470bc27f05c6116p1fa079jsne42699169e20',
+        //       'X-RapidAPI-Host': 'youtube-mp36.p.rapidapi.com'
+        //     }
+        //   };
+
+
         
+
         const options = {
             method: 'GET',
-            url: 'https://youtube-mp36.p.rapidapi.com/dl',
-            params: {id: `${videoId}`},
+            url: 'https://youtube-mp3-downloader2.p.rapidapi.com/ytmp3/ytmp3/',
+            params: {
+                url: `${arg}`
+            },
             headers: {
-              'X-RapidAPI-Key': '4946a6b3dbmsh470bc27f05c6116p1fa079jsne42699169e20',
-              'X-RapidAPI-Host': 'youtube-mp36.p.rapidapi.com'
+                'X-RapidAPI-Key': 'c7232512ecmsh926b30c1f237918p16f551jsn25e3f3ebee17',
+                'X-RapidAPI-Host': 'youtube-mp3-downloader2.p.rapidapi.com'
             }
-          };
+        };
+
+
 
         try {
-           
+
             if (!videoId) ErrorToast('Invalid URL')
             else {
                 const { data } = await axios.request(options)
@@ -69,8 +86,8 @@ export const fetchData = createAsyncThunk(
 
         } catch (error: any) {
             console.log(error);
-       
-           return rejectWithValue(error.message)
+
+            return rejectWithValue(error.message)
         }
     }
 )
@@ -101,7 +118,6 @@ const dataSlice = createSlice({
                 state.isSuccess = false
                 state.message = action.payload as string
                 state.status = 'rejected'
-                
             })
 
     }
