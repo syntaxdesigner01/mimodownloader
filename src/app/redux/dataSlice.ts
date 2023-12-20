@@ -46,16 +46,7 @@ export const fetchData = createAsyncThunk(
         const match = arg.match(regex);
         const videoId = match ? match[1] : null;
 
-        // const options = {
-        //     method: 'GET',
-        //     url: 'https://youtube-mp36.p.rapidapi.com/dl',
-        //     params: {id: `${videoId}`},
-        //     headers: {
-        //       'X-RapidAPI-Key': '4946a6b3dbmsh470bc27f05c6116p1fa079jsne42699169e20',
-        //       'X-RapidAPI-Host': 'youtube-mp36.p.rapidapi.com'
-        //     }
-        //   };
-
+   
 
         
 
