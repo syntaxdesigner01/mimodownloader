@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 export default function MediaCard() {
   const data = useSelector((state: any) => state?.data);
   const status = useSelector((state: any) => state.status);
-  // hello
+  
 
   return (
     <div className="flex flex-col items-center gap-4 lg:gap-2 lg:flex-row lg:items-start pb-6">

@@ -57,7 +57,7 @@ export const fetchData = createAsyncThunk(
                 url: `${arg}`
             },
             headers: {
-                'X-RapidAPI-Key': 'c7232512ecmsh926b30c1f237918p16f551jsn25e3f3ebee17',
+                'X-RapidAPI-Key': `${process.env.NEXT_PUBLIC_API_KEY }`,
                 'X-RapidAPI-Host': 'youtube-mp3-downloader2.p.rapidapi.com'
             }
         };
