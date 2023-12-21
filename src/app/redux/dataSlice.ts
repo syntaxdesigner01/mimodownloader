@@ -46,16 +46,7 @@ export const fetchData = createAsyncThunk(
         const match = arg.match(regex);
         const videoId = match ? match[1] : null;
 
-        // const options = {
-        //     method: 'GET',
-        //     url: 'https://youtube-mp36.p.rapidapi.com/dl',
-        //     params: {id: `${videoId}`},
-        //     headers: {
-        //       'X-RapidAPI-Key': '4946a6b3dbmsh470bc27f05c6116p1fa079jsne42699169e20',
-        //       'X-RapidAPI-Host': 'youtube-mp36.p.rapidapi.com'
-        //     }
-        //   };
-
+   
 
         
 
@@ -66,7 +57,7 @@ export const fetchData = createAsyncThunk(
                 url: `${arg}`
             },
             headers: {
-                'X-RapidAPI-Key': 'c7232512ecmsh926b30c1f237918p16f551jsn25e3f3ebee17',
+                'X-RapidAPI-Key': `${process.env.NEXT_PUBLIC_API_KEY }`,
                 'X-RapidAPI-Host': 'youtube-mp3-downloader2.p.rapidapi.com'
             }
         };
