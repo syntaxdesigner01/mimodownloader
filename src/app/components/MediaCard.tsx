@@ -25,7 +25,7 @@ export default function MediaCard() {
         </div>
 
         <div className="">
-          <div className=" flex justify-between pb-4 lg:pb-10 lg:pt-4  ">
+          <div className=" flex justify-between gap-4 pb-4 lg:pb-10 lg:pt-4  ">
             <p>Duration - {Math.floor(data?.length / 60)}mins</p>
             <p>File size - {data?.size}</p>
             {/* <p className="hidden lg:block">File Type Mp3</p> */}
