@@ -2,3 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .glass {
+    @apply bg-white/50 backdrop-blur-xl border border-white/60 shadow-soft;
+  }
+  .glass-card {
+    @apply bg-white/70 backdrop-blur-lg border border-white/50 shadow-soft rounded-2xl;
+  }
+}
+
+body {
+  @apply bg-white min-h-screen text-gray-800 antialiased overflow-x-hidden;
+}

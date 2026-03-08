@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { UiProviders } from "../../chakraProvider";
 import { ReduxProvider } from "./redux/reduxProvider";
 
 export const metadata: Metadata = {
-  title: "mimo downloader",
-  description: "Download MP3 of your favourite vidoes from Youtube",
+  title: "mimoYT",
+  description: "Download MP3 and MP4 of your favourite videos from YouTube",
   keywords: [
-    "Download",
+    "downloader",
     "youtube",
-    "tiktok",
+    "video downloader",
     "music downloader",
-    "vidoe downloader",
+    "mp3",
+    "mp4",
   ],
 };
 
@@ -24,7 +24,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <ReduxProvider>
-          <UiProviders>{children}</UiProviders>
+          {children}
         </ReduxProvider>
       </body>
     </html>
